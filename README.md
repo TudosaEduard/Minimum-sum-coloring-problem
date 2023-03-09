@@ -28,8 +28,30 @@ Another interesting approach is the use of Integer Linear Programming (ILP) tech
 
 2. Local Search Algorithms: These algorithms try to improve the initial solution by exploring the neighborhood of the solution and trying to change the colors of the nodes in an efficient way. This approach can be useful for larger graphs, but can be time-consuming for very large graphs.
 
-3. Algoritmul DSATUR (Degree of Saturation): Acesta este un algoritm euristic care se bazează pe ideea de a alege nodurile cu gradul maxim și de a le atribui culori care nu au fost încă utilizate în vecinătatea lor. Acest algoritm este capabil să furnizeze soluții de calitate ridicată, dar nu garantează întotdeauna soluții optime.
+3. DSATUR Algorithm (Degree of Saturation): This is a heuristic algorithm that is based on the idea of choosing the nodes with the maximum degree and assigning them colors that have not yet been used in their neighborhood. This algorithm is capable of providing high quality solutions, but does not always guarantee optimal solutions.
 
-4. Algoritmul de optimizare prin căutare cu încărcare (Load Balancing Search): Acest algoritm este o metodă de căutare euristică care încearcă să minimizeze diferența de încărcare dintre noduri prin atribuirea de culori. Acesta poate furniza soluții bune, dar nu garantează întotdeauna soluții optime.
+4. Load Balancing Search optimization algorithm: This algorithm is a heuristic search method that tries to minimize the load difference between nodes by assigning colors. It can provide good solutions, but it does not always guarantee optimal solutions.
 
-5. Algoritmul de optimizare prin împărțire în clusteri (Cluster First, Route Second): Acest algoritm împarte graful în clusteri și încearcă să atribuie culori în fiecare cluster înainte de a le combina pentru a obține o soluție finală. Acesta poate furniza soluții bune, dar poate fi ineficient pentru grafuri mari.
+5. Clustering Optimization Algorithm (Cluster First, Route Second): This algorithm divides the graph into clusters and tries to assign colors to each cluster before combining them to get a final solution. It can provide good solutions, but may be inefficient for large graphs.
+
+## Benchmark instances
+
+Represent a set of graphs that are used to evaluate the performance of combinatorial optimization algorithms. These graphs are used to test the effectiveness of algorithms and to compare different approaches in a common environment. They are selected to represent the most critical or difficult cases so that the algorithms can be evaluated in an objective and fair way.
+
+Some reference instances for MSCP:
+
+1. DSJC250.5: This is a benchmark instance that consists of a graph with 250 nodes and 1065 edges. It has been used in many studies to evaluate the performance of algorithms for solving the MSCP problem.
+
+2. DSJC500.5: This is a benchmark instance that consists of a graph with 500 nodes and 6415 edges. It has also been used in many studies to evaluate the performance of algorithms for solving the MSCP problem.
+
+3. DSJC1000.5: This is a reference instance that consists of a graph with 1000 nodes and 24863 edges. This is a very large example and is used to test the performance of algorithms for solving the MSCP problem on large graphs.
+
+4. C125.9 and C250.9: These are benchmark instances consisting of full bipartite graphs with 125 and 250 nodes, respectively.
+
+## Purpose
+
+We want to implement several algorithms that can achieve very good performance in terms of MSCP and to compare the results obtained on different test graphs, and then to decide which algorithm we will use in the realization of a subsequent application.
+
+## First Conclusion
+
+In conclusion, a number of approaches to the MSC problem have been developed over time, and the metaheuristic approach together with the use of appropriate reference data sets represents the current state of the art for this problem.
