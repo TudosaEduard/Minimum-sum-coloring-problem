@@ -31,10 +31,11 @@ public class GeneticAlgorithm {
             generation++;
             population = tournament.tournamentSelection(graph);
             population = new Crossover(parameters.getCrossoverRate()).crossover(population);
-            population = new Mutation(parameters.getMutationRate()).mutation(population);
+            population = new Mutation(parameters.getMutationRate(), graph.getAdjacencyList()).mutation(population);
             for(int i = 0 ; i < population.getPopulationSize(); i++)
                 population.getCromozom(i).setFitness(population.getCromozom(i).calculateFitness(graph.getGraph()));
             bestSumAllGenerations(population);
+            //System.out.println("Generation: " + generation + " Best sum: " + bestSumEver);
         }
     }
 

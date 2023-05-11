@@ -27,14 +27,14 @@ public class App
     private static long duration;
     private static double durationSeconds;
 
-    private static File file = new File("E:/Dizertatie/Algoritmi/GA/ga/src/main/java/genetic/tests/results/queen11_11_results.txt");
+    private static File file = new File("E:/Dizertatie/Algoritmi/GA/ga/src/main/java/genetic/tests/results/myciel6_results.txt");
 
     public static void main( String[] args ) throws FileNotFoundException
     {
 
-        Parameters parameters = new Parameters(200, 0.2, 0.8, 3000, 30);
+        Parameters parameters = new Parameters(100, 0.3, 0.6, 2000, 30);
 
-        Parser parser = new Parser("queen11_11.txt");
+        Parser parser = new Parser("myciel6.txt");
         parser.parseFile();
 
         Graph graph = new Graph();
@@ -43,17 +43,23 @@ public class App
         graph.setGraph(parser.getG());
         graph.createAdjacencyList();
         int cromaticNumber = graph.greedyColoring();
-
-        startTime = System.currentTimeMillis();
+        //int cromaticNumber = graph.getN();
+        System.out.println("Cromatic number: " + cromaticNumber);
 
         for(int i = 0 ; i < parameters.getEpoch(); i++) {
-            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(parameters, graph, cromaticNumber * 4);
+            startTime = System.currentTimeMillis();
+            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(parameters, graph, cromaticNumber^2);
             geneticAlgorithm.evolvePopulation();
 
             System.out.print("Best sum ever: " + geneticAlgorithm.getBestSumEver() + " " + "Best cromozom ever: ");
-            /*for(int j = 0; j < geneticAlgorithm.getBestCromozomEver().getCromozomSize(); j++)
+            for(int j = 0; j < geneticAlgorithm.getBestCromozomEver().getCromozomSize(); j++)
                 System.out.print(geneticAlgorithm.getBestCromozomEver().getGene(j) + " ");
-            System.out.println();*/
+
+            endTime = System.currentTimeMillis();
+            duration = (endTime - startTime);
+            durationSeconds = (double)(duration / 1000);
+
+            System.out.println("Duration: " + durationSeconds + " s");
 
             if(geneticAlgorithm.getBestSumEver() < minimumSum)
                 minimumSum = geneticAlgorithm.getBestSumEver();
@@ -63,9 +69,6 @@ public class App
         }
 
         averageSum /= parameters.getEpoch();
-        endTime = System.currentTimeMillis();
-        duration = (endTime - startTime);
-        durationSeconds = (double)(duration / 1000);
 
         PrintWriter writer = new PrintWriter(file);
         writer.println("Minimum sum: " + minimumSum);

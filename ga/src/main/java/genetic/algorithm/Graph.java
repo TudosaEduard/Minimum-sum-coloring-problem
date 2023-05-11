@@ -12,6 +12,7 @@ public class Graph {
     private int m;
     private int[][] graph;
     private Map<Integer, List<Integer>> adjacencyList = new HashMap<Integer, List<Integer>>();
+    private int sumColor = 0;
 
     public Graph() {
         this.n = 0;
@@ -106,6 +107,15 @@ public class Graph {
             cromaticNumber = Math.max(cromaticNumber, lowestColor);
         }
 
+        //sum of color
+        for (int i = 1; i <= n; i++) {
+            sumColor += color[i];
+        }
+
         return cromaticNumber;
+    }
+
+    public int getSumColor() {
+        return sumColor;
     }
 }

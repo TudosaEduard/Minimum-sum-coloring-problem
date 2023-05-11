@@ -51,7 +51,7 @@ public class Cromozom {
     //Calculate fitness of a cromozom (sum_color + sum_conflict)
     public int calculateFitness(int[][] g){
         int n = cromozom.length;
-        int fitness = 0;
+        int fitness = 0; 
 
         for(int i = 0; i < n; i++){
             for(int j = i + 1; j < n; j++){
