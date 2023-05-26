@@ -1,0 +1,4 @@
+Minimum sum: 6838
+Maximum sum: 2147483647
+Average sum: -71582561
+Duration: 464.0 s

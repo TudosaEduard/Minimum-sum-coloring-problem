@@ -33,7 +33,7 @@ public class Mutation {
                     if(neighbors != null)
                         for(int k = 0; k < adjacencyList.get(j).size(); k++) {
                             if(population.getCromozom(i).getGene(j) == population.getCromozom(i).getGene(adjacencyList.get(j).get(k) - 1)) {
-                                int gene = (int) (Math.random() * (population.getCromozom(0).getCromozomSize() - 1));
+                                int gene = (int) (Math.random() * (population.getCromozom(0).getCromozomSize()));
                                 population.getCromozom(i).setGene(j, gene);
                             }
                         }

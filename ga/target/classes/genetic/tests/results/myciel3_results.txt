@@ -1,4 +1,4 @@
-Minimum sum: 19
-Maximum sum: 28
-Average sum: 25
-Duration: 0.0 s
+Minimum sum: 17
+Maximum sum: 22
+Average sum: 19
+Duration: 9.0 s

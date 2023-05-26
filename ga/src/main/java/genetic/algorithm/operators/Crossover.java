@@ -20,6 +20,7 @@ public class Crossover {
         else {
             return crossover2(population);
         }
+        //return crossover2(population);
     }
 
     private Population crossover1(Population population) {

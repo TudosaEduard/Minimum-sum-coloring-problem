@@ -3,6 +3,8 @@ package genetic.algorithm;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import genetic.tests.Parser;
 
@@ -26,15 +28,16 @@ public class App
     private static long endTime;
     private static long duration;
     private static double durationSeconds;
+    private static List<Integer> listBestSum = new ArrayList<Integer>();
 
     private static File file = new File("E:/Dizertatie/Algoritmi/GA/ga/src/main/java/genetic/tests/results/myciel6_results.txt");
 
     public static void main( String[] args ) throws FileNotFoundException
     {
 
-        Parameters parameters = new Parameters(100, 0.3, 0.6, 2000, 30);
+        Parameters parameters = new Parameters(100, 0.6, 0.5, 2000, 30);
 
-        Parser parser = new Parser("myciel6.txt");
+        Parser parser = new Parser("queen11_11.txt");
         parser.parseFile();
 
         Graph graph = new Graph();
@@ -44,22 +47,21 @@ public class App
         graph.createAdjacencyList();
         int cromaticNumber = graph.greedyColoring();
         //int cromaticNumber = graph.getN();
-        System.out.println("Cromatic number: " + cromaticNumber);
+        System.out.println("Greedy sum: " + graph.getSumColor() + " " + "Greedy cromatic: " + cromaticNumber);
+        startTime = System.currentTimeMillis();
 
         for(int i = 0 ; i < parameters.getEpoch(); i++) {
-            startTime = System.currentTimeMillis();
-            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(parameters, graph, cromaticNumber^2);
+            
+            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(parameters, graph, graph.getN());
             geneticAlgorithm.evolvePopulation();
 
-            System.out.print("Best sum ever: " + geneticAlgorithm.getBestSumEver() + " " + "Best cromozom ever: ");
-            for(int j = 0; j < geneticAlgorithm.getBestCromozomEver().getCromozomSize(); j++)
-                System.out.print(geneticAlgorithm.getBestCromozomEver().getGene(j) + " ");
+            // System.out.print("Best sum ever: " + geneticAlgorithm.getBestSumEver() + " " + "Best cromozom ever: ");
+            // for(int j = 0; j < geneticAlgorithm.getBestCromozomEver().getCromozomSize(); j++)
+            //     System.out.print(geneticAlgorithm.getBestCromozomEver().getGene(j) + " ");
 
-            endTime = System.currentTimeMillis();
-            duration = (endTime - startTime);
-            durationSeconds = (double)(duration / 1000);
+            listBestSum.add(geneticAlgorithm.getBestSumEver());
 
-            System.out.println("Duration: " + durationSeconds + " s");
+            //System.out.println("Duration: " + durationSeconds + " s");
 
             if(geneticAlgorithm.getBestSumEver() < minimumSum)
                 minimumSum = geneticAlgorithm.getBestSumEver();
@@ -70,6 +72,10 @@ public class App
 
         averageSum /= parameters.getEpoch();
 
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime);
+        durationSeconds = (double)(duration / 1000);
+
         PrintWriter writer = new PrintWriter(file);
         writer.println("Minimum sum: " + minimumSum);
         writer.println("Maximum sum: " + maximumSum);
@@ -77,7 +83,8 @@ public class App
         writer.println("Duration: " + durationSeconds + " s");
         writer.close();
 
-        //print results in queen5_5_results.txt
-
+        //print listBestSum
+        for(int i = 0; i < listBestSum.size(); i++)
+            System.out.print(listBestSum.get(i) + " ");
     }
 }
